@@ -4,9 +4,7 @@
 const createEnumerableProperty = (prop) => {return prop};
 
 const createNotEnumerableProperty = (prop) => {
-    let obj = {};
-    Object.defineProperty(obj, prop, {enumerable: false});
-    return obj.prop;
+    return Symbol.for(prop);
 };
 
 const createProtoMagicObject = () => {};
