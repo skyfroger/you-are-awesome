@@ -3,11 +3,18 @@
 // ready
 const createEnumerableProperty = (prop) => {return prop};
 
+// ready
 const createNotEnumerableProperty = (prop) => {
     return Symbol.for(prop);
 };
 
-const createProtoMagicObject = () => {};
+// ready
+const createProtoMagicObject = () => {
+    let func = function(){};
+    func.prototype = Function.prototype;
+    return func;
+};
+
 const incrementor = () => {};
 const asyncIncrementor = () => {};
 
@@ -29,12 +36,21 @@ const returnBackInSecond = (x) => {
         }, 1200);
     });
 };
-const getDeepPropertiesCount = (obj) => {};
+
+// ready
+const getDeepPropertiesCount = (obj) => {
+    let jsonStr = JSON.stringify(obj);
+    return (jsonStr.match(/\d+/g) || []).length;
+};
 
 // ready
 const createSerializedObject = () => {return null};
 const toBuffer = () => {};
-const sortByProto = () => {};
+
+// ready
+const sortByProto = (objArray) => {
+    return objArray.sort((a, b) => {return a.__proto__ - b.__proto__});
+};
 
 exports.createEnumerableProperty = createEnumerableProperty;
 exports.createNotEnumerableProperty = createNotEnumerableProperty;
